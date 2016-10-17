@@ -1,0 +1,9 @@
+from tools import *
+
+src = Glob('*.c')
+
+CPPPATH = GetCurrentDir()
+
+group = DefineGroup('sim_radio', src, depend=[''], CPPPATH=CPPPATH)
+
+Return('group')

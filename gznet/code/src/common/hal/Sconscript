@@ -1,0 +1,16 @@
+import os
+from tools import *
+
+src = Glob('*.c')
+
+SrcRemove(src, ['hal_sensor.c'])
+SrcRemove(src, ['hal_rtc.c', 'hal_socket.c'])
+
+SrcRemove(src, ['hal_sd.c'])
+
+CPPPATH = []
+# CPPPATH = [GetCurrentDir() + '/../../include/common/hal']
+
+group = DefineGroup('hal', src, depend=[''], CPPPATH=CPPPATH)
+
+Return('group')

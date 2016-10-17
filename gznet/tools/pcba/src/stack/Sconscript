@@ -1,0 +1,18 @@
+import os
+from tools import *
+
+objs = []
+cwd = GetCurrentDir()
+
+src = Glob('*.c')
+
+CPPPATH = [GetCurrentDir() + '/../include/stack']
+
+objs = DefineGroup('stack', src, depend=[''], CPPPATH = CPPPATH)
+
+objs += SConscript(cwd + '/common/Sconscript')
+objs += SConscript(cwd + '/custom/Sconscript')
+objs += SConscript(cwd + '/module/mac_module/Sconscript')
+
+Return('objs')
+

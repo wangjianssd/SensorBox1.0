@@ -1,0 +1,9 @@
+import os
+from tools import *
+
+src = Glob('*.c')
+CPPPATH = [GetCurrentDir() + '/../../include/common/lib']
+
+group = DefineGroup('lib', src, depend=[''], CPPPATH = CPPPATH)
+
+Return('group')

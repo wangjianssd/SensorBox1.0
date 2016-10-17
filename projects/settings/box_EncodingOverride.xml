@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<userOverrides>
+  <override>
+    <path>D:\WSN\01work\proj\seneor_box\code_IAR_6.5\src\apps\cfg\node_cfg.h</path>
+    <encoding>UTF-8</encoding>
+  </override>
+  <override>
+    <path>D:\WSN\01work\proj\seneor_box\code_IAR_6.5\src\apps\start\main.c</path>
+    <encoding>UTF-8</encoding>
+  </override>
+  <override>
+    <path>D:\WSN\01work\proj\seneor_box\code_IAR_6.5\src\bluetooth\src\blu_tx.c</path>
+    <encoding>UTF-8</encoding>
+  </override>
+  <override>
+    <path>D:\WSN\01work\proj\seneor_box\code_IAR_6.5\src\gznet\code\src\common\hal\hal_nvmem.h</path>
+    <encoding>UTF-8</encoding>
+  </override>
+  <override>
+    <path>D:\WSN\01work\proj\seneor_box\code_IAR_6.5\src\gznet\code\src\common\lib\bootloader.c</path>
+    <encoding>UTF-8</encoding>
+  </override>
+  <override>
+    <path>D:\WSN\01work\proj\seneor_box\code_IAR_6.5\src\local_drive\dev\m24lr64e\rfid.c</path>
+    <encoding>UTF-8</encoding>
+  </override>
+  <override>
+    <path>D:\WSN\01work\proj\seneor_box\code_IAR_6.5\src\local_drive\dev\sensor_accelerated\sensor_accelerated.c</path>
+    <encoding>UTF-8</encoding>
+  </override>
+  <override>
+    <path>D:\WSN\01work\proj\seneor_box\code_IAR_6.5\src\local_drive\hal\src\hal_acc_sensor.c</path>
+    <encoding>UTF-8</encoding>
+  </override>
+</userOverrides>
+
+

@@ -1,0 +1,8 @@
+from tools import *
+
+src = Glob('*.c')
+
+CPPPATH = GetCurrentDir()
+
+group = DefineGroup('driver', src, depend=[''], CPPPATH=CPPPATH)
+Return('group')

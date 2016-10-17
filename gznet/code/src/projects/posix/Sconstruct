@@ -1,0 +1,54 @@
+import os
+import sys
+import config
+
+BUILD = 'debug'
+
+#toolchains
+CC = 'gcc'
+AS = 'gcc'
+AR = 'ar'
+LINK = 'gcc'
+TARGET_EXT = 'out'
+SIZE = 'size'
+OBJDUMP = 'objdump'
+OBJCPY = 'objcopy'
+
+DEVICE = ' -ffunction-sections -fdata-sections'
+CFLAGS = DEVICE + ' -std=c99'
+AFLAGS = ' -c' + DEVICE + ' -x assembler-with-cpp'
+LFLAGS = DEVICE + ' -Wall'
+
+CPATH = ''
+LPATH = ''
+
+if BUILD == 'debug':
+    CFLAGS += ' -g -O0'
+else:
+    CFLAGS += ' -O2'
+
+PROJ_ROOT = os.path.normpath(os.getcwd() + '/../..')
+TOOLS_ROOT = os.getcwd()
+
+sys.path += [PROJ_ROOT, TOOLS_ROOT]
+
+from tools import *
+
+env = Environment(
+    tools=['mingw'],
+    AS=AS, ASFLAGS=AFLAGS, CC=CC, CCFLAGS=CFLAGS, AR=AR, ARFLAGS='-rc',
+    LINK=LINK, LINKFLAGS=LFLAGS, LIBS=['pthread', 'm'],
+    LIBPATH=['/usr/lib', '/usr/local/lib'])
+
+TARGET = config.SSN_NODE_TYPE + TARGET_EXT
+
+
+Export('PROJ_ROOT')
+Repository(PROJ_ROOT)
+
+objs = PrepareBuilding(env, PROJ_ROOT)
+
+objs += SConscript(PROJ_ROOT+'/Sconscript', variant_dir='build/', duplicate=0,
+    CPPPATH=PROJ_ROOT)
+
+env.Program(TARGET, objs)

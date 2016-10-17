@@ -1,0 +1,8 @@
+import os
+from tools import *
+
+src = Glob('*.c')
+
+group = DefineGroup('posix', src, depend=[''])
+
+Return('group')

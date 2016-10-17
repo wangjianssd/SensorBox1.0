@@ -1,0 +1,10 @@
+import os
+from tools import *
+
+src = Glob('*.c')
+CPPPATH = [GetCurrentDir()]
+
+group = DefineGroup('wsnos', src, depend=[''], CPPPATH = CPPPATH)
+Return('group')
+
+

@@ -1,0 +1,12 @@
+import os
+from tools import *
+
+src = Glob('*.c')
+
+SrcRemove(src, ['nwk_handles.c'])
+
+CPPPATH = [GetCurrentDir()]
+
+group = DefineGroup('nwk', src, depend=[''], CPPPATH=CPPPATH)
+
+Return('group')

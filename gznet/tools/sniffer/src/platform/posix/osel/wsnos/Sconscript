@@ -1,0 +1,17 @@
+import os
+from tools import *
+from config import *
+
+objs = []
+cwd = GetCurrentDir()
+c_list = os.listdir(cwd)
+
+if SSN_NODE_TYPE == 'collector':
+	objs += SConscript(cwd + '/collector/Sconscript')
+elif SSN_NODE_TYPE == 'detector':
+	objs += SConscript(cwd + '/detector/Sconscript')
+elif SSN_NODE_TYPE == 'router':
+	objs += SConscript(cwd + '/router/Sconscript')
+
+Return('objs')
+

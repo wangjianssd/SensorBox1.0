@@ -1,0 +1,10 @@
+import os
+from tools import *
+
+src = Glob('*.c')
+
+CPPPATH = [GetCurrentDir() + '/../include/stack/common']
+
+group = DefineGroup('common', src, depend=[''], CPPPATH = CPPPATH)
+
+Return('group')

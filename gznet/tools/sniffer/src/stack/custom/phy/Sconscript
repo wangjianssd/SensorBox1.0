@@ -1,0 +1,9 @@
+import os
+from tools import *
+
+src = Glob('*.c')
+CPPPATH = [GetCurrentDir()]
+
+group = DefineGroup('phy', src, depend=[''], CPPPATH = CPPPATH)
+
+Return('group')

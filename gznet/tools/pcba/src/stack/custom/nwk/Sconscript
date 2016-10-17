@@ -1,0 +1,14 @@
+import os
+from tools import *
+from config import *
+
+src = Glob('*.c')
+
+if SSN_NODE_TYPE == 'collector':
+	SrcRemove(src, ['route_nwk.c', 'terminal_nwk.c'])
+
+CPPPATH = [GetCurrentDir()]
+
+group = DefineGroup('nwk', src, depend=[''], CPPPATH = CPPPATH)
+
+Return('group')

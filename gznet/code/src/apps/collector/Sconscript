@@ -1,0 +1,11 @@
+import os
+from tools import *
+
+src = Glob('*.c')
+
+CPPPATH = [GetCurrentDir() + '/node_cfg/']
+# CPPPATH += [GetCurrentDir() + '/../']
+
+group = DefineGroup('collector', src, depend=[''], CPPPATH=CPPPATH)
+
+Return('group')

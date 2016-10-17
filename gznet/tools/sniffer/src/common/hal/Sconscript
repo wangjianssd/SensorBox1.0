@@ -1,0 +1,12 @@
+import os
+from tools import *
+
+src = Glob('*.c')
+
+SrcRemove(src, ['hal_sd.c', 'hal_rtc.c', 'hal_socket.c'])
+
+CPPPATH = [GetCurrentDir() + '/../../include/common/hal']
+
+group = DefineGroup('hal', src, depend=[''], CPPPATH = CPPPATH)
+
+Return('group')

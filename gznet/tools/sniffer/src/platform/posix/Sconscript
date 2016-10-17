@@ -1,0 +1,14 @@
+import os
+from tools import *
+
+objs = []
+cwd = GetCurrentDir()
+c_list = os.listdir(cwd)
+
+objs += SConscript(cwd + '/driver/Sconscript')
+objs += SConscript(cwd + '/init/Sconscript')
+objs += SConscript(cwd + '/osel/wsnos/Sconscript')
+
+
+Return('objs')
+
