@@ -15,12 +15,12 @@
 #include <app_task.h>
 
 static uint8_t osel_heap_buf[OSEL_HEAP_SIZE];
-#define elec_lock_CtrlIO_Init_EX() {P4SEL &= ~BIT1; P4DIR |= BIT1; P4OUT &= ~BIT1;\
-                                    P6SEL &= ~BIT3; P6DIR |= BIT3; P6OUT &= ~BIT3;}
-#define elec_lock_CtrlIO_On_EX()   {P6OUT &= ~BIT3; P4OUT |= BIT1;}
-#define elec_lock_CtrlIO_Off_EX()  {P4OUT &= ~BIT1; P6OUT |= BIT3;}
-#define elec_lock_CtrlIO_Float_EX(){P4OUT &= ~BIT1; P6OUT &= ~BIT3;}
-#define EXTERN_LOCK_LOCK_DELAY_EX  (115)
+//#define elec_lock_CtrlIO_Init_EX() {P4SEL &= ~BIT1; P4DIR |= BIT1; P4OUT &= ~BIT1;\
+//                                    P6SEL &= ~BIT3; P6DIR |= BIT3; P6OUT &= ~BIT3;}
+//#define elec_lock_CtrlIO_On_EX()   {P6OUT &= ~BIT3; P4OUT |= BIT1;}
+//#define elec_lock_CtrlIO_Off_EX()  {P4OUT &= ~BIT1; P6OUT |= BIT3;}
+//#define elec_lock_CtrlIO_Float_EX(){P4OUT &= ~BIT1; P6OUT &= ~BIT3;}
+//#define EXTERN_LOCK_LOCK_DELAY_EX  (115)
 
 int16_t main(void)
 {

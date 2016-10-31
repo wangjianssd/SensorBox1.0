@@ -254,8 +254,13 @@ void gprs_send_state(fsm_t *me,sig_event_e sig)
 /**
  *@brief gprs连接状态处理
  */
+#define GPRS_CONNECT_TIMEOUT_COUNT
+#ifdef GPRS_CONNECT_TIMEOUT_COUNT
+uint8_t GprsTimeoutCount = 0;
+#endif
 void gprs_connect_state(fsm_t *me,sig_event_e sig)
 {
+
     osel_event_t event;
     switch (sig)
     {
@@ -264,9 +269,25 @@ void gprs_connect_state(fsm_t *me,sig_event_e sig)
         break;
         
     case TIMEOUT_SIG:
+#define GPRS_CONNECT_TIMEOUT_COUNT
+
+        GprsTimeoutCount++;
+
+        if (GprsTimeoutCount > 3)
+        {
+            TRAN(gprs_power_off_state);
+            event.sig = GPRS_STATE_TRANS_EVENT;
+            event.param = (osel_param_t *)INIT_SIG;
+            osel_post(NULL, &gprs_event_process, &event);   
+			break;   
+        }
+#endif
+
         event.sig = GPRS_STATE_TRANS_EVENT;
         event.param = (osel_param_t *)SEND_CIPSTART;
         osel_post(NULL, &gprs_event_process, &event);
+        
+
         
 //        osel_post(GPRS_STATE_TRANS_EVENT, (void *)SEND_CIPSTART, OSEL_EVENT_PRIO_LOW);
         break;         
