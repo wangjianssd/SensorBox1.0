@@ -1,5 +1,5 @@
 [DebugChecksum]
-Checksum=64165505
+Checksum=-1224268003
 [Stack]
 FillEnabled=0
 OverflowWarningsEnabled=1
@@ -26,18 +26,8 @@ MixedMode=1
 LogEnabled=0
 GraphEnabled=0
 ShowTimeLog=1
-[Log file]
-LoggingEnabled=_ 0
-LogFile=_ ""
-Category=_ 0
-[TermIOLog]
-LoggingEnabled=_ 0
-LogFile=_ ""
 [Breakpoints]
-Bp0=_ "STD_CODE" "{$PROJ_DIR$\..\apps\application\control_module\src\app_task.c}.111.12" 1 0 0 0 "" 0 ""
-Bp1=_ "STD_CODE" "{$PROJ_DIR$\..\local_drive\dev\m24lr64e\rfid.c}.551.5" 1 0 0 0 "" 0 ""
-Bp2=_ "STD_CODE" "{$PROJ_DIR$\..\local_drive\dev\m24lr64e\rfid.c}.545.5" 1 0 0 0 "" 0 ""
-Count=3
+Count=0
 [FET]
 Clock mode=46
 Extended Clock mode=1055
@@ -58,6 +48,13 @@ SP=0
 SR=0
 all registers=0
 File name=
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
 [Aliases]
 Count=0
 SuppressDialog=0

@@ -770,6 +770,11 @@ static void blu_cmd_data_recv_handler(void)
            buzzer_cycle_timer_start(200);
            
 #ifdef USE_EXTERN_LOCK   
+            if (elec_lock_State == lock_Open)
+            {
+              return;
+            }
+            
             elec_lock_open();
             elec_lock_State_updata = 1;
             extern_lock_timeout_set(EXTERN_LOCK_AUTO_LOCK_DELAY); // 10s timeout lock #endif

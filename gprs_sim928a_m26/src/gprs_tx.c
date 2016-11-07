@@ -410,7 +410,7 @@ void gprs_connect_state(fsm_t *me,sig_event_e sig)
 
         GprsTimeoutCount++;
 
-        if (GprsTimeoutCount > 3)
+        if (GprsTimeoutCount > 15)
         {
             TRAN(gprs_power_off_state);
             event.sig = GPRS_STATE_TRANS_EVENT;
