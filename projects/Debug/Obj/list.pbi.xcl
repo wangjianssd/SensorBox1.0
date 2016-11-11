@@ -12,8 +12,6 @@ D:\WSN\01work\proj\seneor_box\code\projects\..\elec_clock
 -I
 D:\WSN\01work\proj\seneor_box\code\projects\..\gprs_sim928a_m26\include
 -I
-D:\WSN\01work\proj\seneor_box\code\projects\..\nfc_reader
--I
 D:\WSN\01work\proj\seneor_box\code\projects\..\bluetooth\include
 -I
 D:\WSN\01work\proj\seneor_box\code\projects\..\gznet\code\src
@@ -57,8 +55,6 @@ D:\WSN\01work\proj\seneor_box\code\elec_clock
 \\D:\WSN\01work\proj\seneor_box\code\gprs\include
 -I
 D:\WSN\01work\proj\seneor_box\code\gprs_sim928a_m26\include
--I
-D:\WSN\01work\proj\seneor_box\code\nfc_reader
 -I
 D:\WSN\01work\proj\seneor_box\code\bluetooth\include
 -I

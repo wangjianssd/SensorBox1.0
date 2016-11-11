@@ -94,6 +94,7 @@ bool_t elec_lock_open(void)
     OSEL_ENTER_CRITICAL(status);
 
 #ifdef USE_EXTERN_LOCK    
+
     elec_lock_CtrlIO_On_EX();
 
     elec_lock_State = lock_Open;
