@@ -105,7 +105,7 @@
         </option>
         <option>
           <name>GStackSize2</name>
-          <state>3000</state>
+          <state>3500</state>
         </option>
         <option>
           <name>GHeapSize2</name>
@@ -396,6 +396,7 @@
           <state>$PROJ_DIR$\..\elec_clock\</state>
           <state>//$PROJ_DIR$\..\gprs\include\</state>
           <state>$PROJ_DIR$\..\gprs_sim928a_m26\include\</state>
+          <state>$PROJ_DIR$\..\nfc_reader\</state>
           <state>$PROJ_DIR$\..\bluetooth\include\</state>
           <state>$PROJ_DIR$\..\gznet\code\src\</state>
           <state>$PROJ_DIR$\..\apps\application\control_module\include\</state>
@@ -803,7 +804,7 @@
         </option>
         <option>
           <name>ListSymbols</name>
-          <state>2</state>
+          <state>1</state>
         </option>
         <option>
           <name>PageLengthCheck</name>
@@ -827,7 +828,7 @@
         </option>
         <option>
           <name>XclFile</name>
-          <state>$TOOLKIT_DIR$\config\linker\lnk430F5359.xcl</state>
+          <state>$TOOLKIT_DIR$\config\linker\lnk430f5359.xcl</state>
         </option>
         <option>
           <name>XclFileSlave</name>
@@ -993,7 +994,7 @@
         </option>
         <option>
           <name>OverlaySystemMap</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>RawBinaryFile</name>
@@ -3215,6 +3216,33 @@
         </file>
       </group>
     </group>
+  </group>
+  <group>
+    <name>nfc_reader</name>
+    <file>
+      <name>$PROJ_DIR$\..\nfc_reader\bsp_com.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\nfc_reader\bsp_com.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\nfc_reader\fifo.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\nfc_reader\fifo.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\nfc_reader\nfc_reader.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\nfc_reader\nfc_reader.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\nfc_reader\queue.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\nfc_reader\queue.h</name>
+    </file>
   </group>
   <group>
     <name>start</name>

@@ -42,6 +42,7 @@
 #define BOX_BLU_CMD_ALARM        	0x05
 #define BOX_BLU_CMD_SENSORREPORT	0x06
 #define BOX_BLU_CMD_BOXSTATE	 	0x07
+#define BOX_BLU_CMD_TAGINFO 	 	0x08
 
 #define BOX_BLU_CMD_COM_HEAD1       0xD5
 #define BOX_BLU_CMD_COM_HEAD2       0xC8

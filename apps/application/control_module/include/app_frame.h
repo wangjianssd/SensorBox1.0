@@ -20,6 +20,7 @@
 //#include <coap_client.h>
 //#include <tfp_printf.h>
 #include <stdlib.h>
+#include <nfc_reader.h>
 
 
 #define MAX_BOX_FRAME_LENGTH 128
@@ -152,6 +153,13 @@ typedef struct
     uint8_t box_operation_status;              // box operation status
 } heart_info_t;
 
+
+typedef struct
+{
+    uint8_t tag_count;                          
+    uint8_t data[12 * RFID_TAG_QUEUE_SIZE + 2];
+} tag_info_t;
+
 /**
 * @brief 数据帧payload部分
 */
@@ -161,7 +169,8 @@ typedef enum
     BOX_SENSOR_FRAME,
     BOX_ALARM_FRAME,
     BOX_LOCATION_FRAME,
-    BOX_HEART_FRAME,
+    BOX_HEART_FRAME,    
+    BOX_TAG_INFO_FRAME
 }box_frame_type_e;
 
 typedef struct
@@ -174,6 +183,7 @@ typedef struct
 		alarm_info_t        alarm_info;//报警
 		location_info_t     location_info;//位置
 		heart_info_t        heart_info;//心跳        
+		tag_info_t          tag_info;
     }box_type_frame_u;    
 }box_frame_t;
 
