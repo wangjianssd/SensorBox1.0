@@ -44,8 +44,7 @@ ShowTimeLog=1
 [Breakpoints]
 Bp0=_ "STD_CODE" "{$PROJ_DIR$\..\apps\application\control_module\src\app_task.c}.112.12" 1 0 0 0 "" 0 ""
 Bp1=_ "STD_CODE" "{$PROJ_DIR$\..\apps\application\control_module\src\app_send.c}.904.9" 1 0 0 0 "" 0 ""
-Bp2=_ "STD_CODE" "{$PROJ_DIR$\..\apps\start\main.c}.39.5" 1 0 0 0 "" 0 ""
-Count=3
+Count=2
 [FET]
 Clock mode=46
 Extended Clock mode=1055
