@@ -23,6 +23,7 @@ D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\bh1750.pbi
 D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\blu_tx.pbi
 D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\board.pbi
 D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\bootloader.pbi
+D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\bsp_com.pbi
 D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\clock.pbi
 D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\coap_client.pbi
 D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\collector_nwk.pbi
@@ -31,6 +32,7 @@ D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\crc.pbi
 D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\debug.pbi
 D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\elec_lock.pbi
 D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\energy.pbi
+D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\fifo.pbi
 D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\flash.pbi
 D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\general.pbi
 D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\generate.pbi
@@ -65,6 +67,7 @@ D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\mac_package.pbi
 D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\main.pbi
 D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\md5.pbi
 D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\neighbors.pbi
+D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\nfc_reader.pbi
 D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\nwk_frames.pbi
 D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\nwk_handles.pbi
 D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\nwk_route.pbi
@@ -78,6 +81,7 @@ D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\phy_state.pbi
 D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\pmap.pbi
 D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\portablelonglong.pbi
 D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\printf.pbi
+D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\queue.pbi
 D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\radio.pbi
 D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\radio_comm.pbi
 D:\WSN\01work\proj\seneor_box\code\projects\Debug\Obj\rfid.pbi
