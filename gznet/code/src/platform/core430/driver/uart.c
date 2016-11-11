@@ -17,6 +17,12 @@
 #include "pmap.h"
 #include <gprs_tx.h>
 #include "blu_tx.h"
+#include "gps.h"
+#include "fifo.h"
+#include "bsp_com.h"
+#include "blu_tx.h"
+
+extern uint8_t COM1RxFIFO[__COM1_RX_FIFO_SIZE__ + FIFO_INFO_SIZE];
 
 static uart_interupt_cb_t uart_interrupt_cb = NULL;
 
@@ -250,11 +256,18 @@ __interrupt void uart1_rx_isr(void)
     LPM3_EXIT;
 }
 
+extern void BspCom1RxHander( uint8_t* data, uint16_t size );
+
 #pragma vector = USCI_A2_VECTOR
 __interrupt void uart2_rx_isr(void)
 {
+    //osel_event_t event;
+    uint8_t data;
     OSEL_ISR_ENTRY();
-    uart_int_cb_handle(UART_2, UCA2RXBUF);
+    //uart_int_cb_handle(UART_2, UCA2RXBUF);
+    data = UCA2RXBUF;
+    FIFOIn((FIFODataTypeDef *)COM1RxFIFO, &data);
+
     OSEL_ISR_EXIT();
     LPM3_EXIT;
 }

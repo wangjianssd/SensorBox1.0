@@ -50,6 +50,7 @@ osel_etimer_t acc_gps_cycle_etimer; //*< 进入运动后gps周期上报定时器
 void lock_no_password_event_handle(void);
 osel_etimer_t buzzer_cycle_timer;
 osel_etimer_t gprs_test_stop_timer;
+osel_etimer_t nfc_reader_rx_data_timer; 
 
 extern void blu_no_data_timer_cb(void);
 
@@ -179,7 +180,14 @@ PROCESS_THREAD(app_task_thread_process,ev,data)
        {
            lock_no_password_event_handle();
        }
-	 
+        else if (BOX_NFC_READER_EVENT == ev)
+        {
+            MasterStopReadEpc();
+
+            MasterStopReadEpc();
+
+            NfcReaderRxProcess();
+        }
        PROCESS_YIELD();     //*< 释放线程控制权，进行任务切换 
     }
     PROCESS_END();
@@ -228,7 +236,7 @@ void app_task_init(void)
     osel_etimer_ctor(&led_timer,&app_task_thread_process,BOX_LED_TIMER_EVENT,NULL);//*<LED定时器
     osel_etimer_ctor(&wait_ack_timer,&app_task_thread_process,BOX_WAIT_ACK_TIMER_EVENT,NULL);//*<下行接收等待定时器
     osel_etimer_ctor(&nfc_wait_isr_timer,&app_task_thread_process,BOX_NFC_INT_EVENT,NULL);//*<NFC中断延时定时器    
-    
+    osel_etimer_ctor(&nfc_reader_rx_data_timer,&app_task_thread_process, BOX_NFC_READER_EVENT, NULL);
     box_nfc_init();
 #ifdef USE_Fingerprints
     osel_etimer_ctor(&fingerprints_isr_timer,&app_task_thread_process,BOX_FRIGNER_INT_EVENT,NULL);//*<ָ�ƿ����ж϶�ʱ��

@@ -322,6 +322,7 @@ void hal_board_init(void)
 #if 1
     hal_acc_init();
 #endif
+    NfcReaderInit();
 
     debug_init(DBG_LEVEL_TRACE | DBG_LEVEL_ORIGIN | DBG_LEVEL_INFO);
 }

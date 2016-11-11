@@ -3035,6 +3035,33 @@
     </group>
   </group>
   <group>
+    <name>nfc_reader</name>
+    <file>
+      <name>$PROJ_DIR$\..\nfc_reader\bsp_com.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\nfc_reader\bsp_com.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\nfc_reader\fifo.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\nfc_reader\fifo.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\nfc_reader\nfc_reader.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\nfc_reader\nfc_reader.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\nfc_reader\queue.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\nfc_reader\queue.h</name>
+    </file>
+  </group>
+  <group>
     <name>start</name>
     <file>
       <name>$PROJ_DIR$\..\apps\start\cstartup.s43</name>

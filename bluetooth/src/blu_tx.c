@@ -25,6 +25,7 @@
 #include "app_acc_sensor.h"
 //#include <app_heartbeat.h>
 #include "app_humiture.h"
+#include "nfc_reader.h"
 
 
 
@@ -88,7 +89,7 @@ static osel_etimer_t blu_no_ack_timer;
 static osel_etimer_t blu_no_lock_timer;
 extern osel_etimer_t buzzer_cycle_timer;
 extern bool_t if_get_password;
-
+uint16_t BluDataSn = 0;
 
 #define BLU_EVENT_MAX       (10u)   //*< æœ€å¤šå¤„ç†10ä¸ªäº‹ä»¶
 static osel_event_t blu_event_store[BLU_EVENT_MAX];
@@ -266,7 +267,18 @@ bool_t blu_tran_can_send(void)
 
 static void blu_send_cmd(uint8_t *cmd, uint8_t len)
 { 
-    serial_write(BLU_UART, cmd, len);
+    uint8_t i;
+    uint8_t mod;
+
+    mod = 15;
+    
+    for (i = 0; i < (len / mod); i++)
+    {
+        serial_write(BLU_UART, &cmd[mod * i], mod);
+        delay_ms(50);
+    }
+
+    serial_write(BLU_UART, &cmd[mod * i], len % mod);
 }
 
 
@@ -693,10 +705,11 @@ static void blu_cmd_data_recv_handler(void)
 	uint16_t temp_blu_data_sn;
 	USHORT temp_blu_crc = 0;
 	box_frame_t box_frame;
-     
+    uint8_t scan_delay;
+    
 	if (blu_recv_array[0] == '2')
 	{
-       // goto TEST_EXTERN_LOCK;
+        goto TEST_TAG_READER;
     }
     
 	if((blu_recv_array[0] != BOX_BLU_CMD_COM_HEAD1)||(blu_recv_array[1] != BOX_BLU_CMD_COM_HEAD2))
@@ -887,9 +900,24 @@ static void blu_cmd_data_recv_handler(void)
 		//0x85--±¨¾¯Ö¸Áî½ÓÊÕ, 0x86--´«¸ÐÆ÷ÐÅÏ¢ÉÏ±¨,0x87--¸ÐÖªÏä×´Ì¬ÉÏ±¨
 		if((blu_recv_array[8] ==0)&&(blu_recv_array[9] ==0))
         {
-			blu_cmd_data_send_handler();
+            blu_cmd_data_send_handler();
         }
 //		OSEL_EXIT_CRITICAL(status);
+        return;
+	}
+    else if((blu_recv_array[5] == (BOX_BLU_CMD_TAGINFO)))
+	{
+		//0x88--RFID TAG READER
+TEST_TAG_READER:
+		//BluDataSn = (((uint16_t)blu_recv_array[6])<<8) | blu_recv_array[7];
+        //scan_delay = (((uint16_t)blu_recv_array[8])<<8) | blu_recv_array[9];
+        BluDataSn = 0xabcd;        
+	    scan_delay = blu_recv_array[1];
+        
+        NfcReaderRxProcesstimerStop();
+        NfcReaderRxProcesstimerStart(scan_delay);
+        blu_flush_recv_buf_from_serial();
+
         return;
 	}
     else
@@ -1103,7 +1131,7 @@ void blu_init(const blu_init_cfg_t *blu_cfg)
     wsnos_init_printf(NULL, NULL);//ä»…ä½¿ç”¨wsnos_sprintf
     
     hal_uart_init(BLU_UART, 9600); 
-
+//wangjian blu
 	serial_write(BLU_UART, BLU_AT_BAUD_115200, sizeof(BLU_AT_BAUD_115200)-1);
 
 	delay_ms(200);

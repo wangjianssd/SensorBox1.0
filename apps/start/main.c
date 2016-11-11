@@ -13,6 +13,7 @@
  */
 #include <gznet.h>
 #include <app_task.h>
+#include "bsp_com.h"
 
 static uint8_t osel_heap_buf[OSEL_HEAP_SIZE];
 //#define elec_lock_CtrlIO_Init_EX() {P4SEL &= ~BIT1; P4DIR |= BIT1; P4OUT &= ~BIT1;\
@@ -25,8 +26,7 @@ static uint8_t osel_heap_buf[OSEL_HEAP_SIZE];
 int16_t main(void)
 {
 	/*开启了看门狗52s后复位*/
-    hal_wdt_clear(16000);   //WANGJIAN
-   // WDTCTL = WDTPW + WDTHOLD;
+    hal_wdt_clear(16000);   
 #ifdef NDEBUG
     bootloader_init();
 #endif
@@ -36,8 +36,8 @@ int16_t main(void)
 	hal_board_init();    
 	stack_init();
     app_task_init();
-    
-	osel_run();
+
+    osel_run();
     
 	return 0;
 }
