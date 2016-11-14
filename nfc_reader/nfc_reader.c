@@ -25,7 +25,7 @@
 
 /* Variables -----------------------------------------------------------------*/
 extern osel_etimer_t nfc_reader_rx_data_timer; 
-
+extern osel_etimer_t nfc_reader_tag_process_timer;
 RFID_DATA  RxBuffer_RFID_DATA = 
 {
   0
@@ -41,7 +41,9 @@ RFID_DATA  RxBuffer_RFID_DATA =
 ********************************************************************/
 void NfcReaderInit(void)
 {
-    //hal_uart_init(__BSP_COM1__, 115200); 
+    unsigned int i;
+
+    hal_uart_init(__BSP_COM1__, 115200); 
     
     BspCom1Init(115200);
 
@@ -49,6 +51,12 @@ void NfcReaderInit(void)
 
     MasterStopReadEpc();
     MasterStopReadEpc();
+
+    for(i = 0; i < 5; i++)
+    {
+        ReaderInfoGet();
+        delay_ms(100);
+    }
 	//serial_write(__BSP_COM1__, "nfc_reader_init", sizeof("nfc_reader_init")-1);
 }
 ////////////////////////End of function//////////////////////////////
@@ -147,7 +155,7 @@ void MasterSetSelcet(unsigned char *EpcData)
 //输入参数: 命令,应答数据+数据长度
 //返回值：无
 //=================================================================	 
-uint8_t ReadEpcExCMD[9] = {0xAA,0x00,0x27,0x00,0x02,0x01,0xf4, 0x1E, 0X8E};
+uint8_t ReadEpcExCMD[9] = {0xAA,0x00,0x27,0x00,0x02,0x01,0xf4, 0x1E, 0X8E};                 
 
 void MasterReadExEpc(void)
 {
@@ -178,6 +186,14 @@ void MasterStopReadEpc(void)
   USART_PutStr(ReadEpcStopCMD,7);
 }
 
+uint8_t ReadReaderInfoCMD[8] = {0xAA,0x00,0x03,0x00,0x01,0x00,0x04,0x8E};
+
+void ReaderInfoGet(void)
+{
+  USART_PutStr(ReadReaderInfoCMD,8);
+}
+
+
 //=================================================================
 //功能描述:mcu应答+数据
 //输入参数: 命令,应答数据+数据长度
@@ -188,6 +204,13 @@ uint8_t ReadTidCMD[16] = {0xAA,0x00,0x39,0x00,0x09,0x00,0x00,0x00,0x00,0x02,0x00
 void MasterReadTid(void)
 {
   USART_PutStr(ReadTidCMD,16);
+}
+
+uint8_t SetPowerCMD[9] = {0xAA,0x00,0xB6,0x00,0x02,0x0A,0x8C,0x4E,0x8E};
+
+void MasterSetPower(void)
+{
+  USART_PutStr(SetPowerCMD,9);
 }
 
 /*******************************************************************************
@@ -237,7 +260,8 @@ unsigned char CheckUartDat(unsigned char *UartDat,unsigned char *RxBuffer)
 					RxBuffer_RFID_DATA.Cmd = RxBuffer[1];
 					RxBuffer_RFID_DATA.DataPL[0] = RxBuffer[2];
 					RxBuffer_RFID_DATA.DataPL[1] = RxBuffer[3];
-
+                    RxBuffer_RFID_DATA.EPCLen = 0;
+                    
 					/*****************read EPC********************/
 					if((RxBuffer_RFID_DATA.Cmd == 0x22) && (RxBuffer_RFID_DATA.Type == 0x02))
 					{
@@ -275,12 +299,18 @@ unsigned char CheckUartDat(unsigned char *UartDat,unsigned char *RxBuffer)
 						   RxBuffer_RFID_DATA.TIDBuf[i - 7 - RxBuffer_RFID_DATA.EPCLen] = RxBuffer[i];
 						}
 					}
-										
+                    
+					/*****************Set Power********************/
+                    if((RxBuffer_RFID_DATA.Cmd == 0xB6) && (RxBuffer_RFID_DATA.Type == 0x01))
+					{
+						return TRUE;
+					}
+                    
 					return TRUE;
 				}
 				else
 				{
-				       UartPutChar(CheckSum);//否则返回校验值
+				       //UartPutChar(CheckSum);//否则返回校验值
 				}
 
 				/********************/
@@ -405,29 +435,60 @@ void NfcReaderRxProcess(void)
 //RxBuffer_RFID_DATA.queue.count = 10;
     if (flag == 1)
     {
-        BoxSendRfidTagInfo();
+      //  BoxSendRfidTagInfo();
 
-        RxBuffer_RFID_DATA.queue.count = 0;
+      //  RxBuffer_RFID_DATA.queue.count = 0;
     }
 
     //
 }
+void NfcReaderTagInfoUpdate(void)
+{
+    BoxSendRfidTagInfo();
+    
+    RxBuffer_RFID_DATA.queue.count = 0;
+}
 
-void NfcReaderRxProcesstimerStart(uint16_t delay)
+void NfcReaderRxProcesstimerStart(void)
 {
     //MasterReadEpc();
-    MasterReadExEpc();
-    osel_etimer_arm(&nfc_reader_rx_data_timer, (delay * 100/OSEL_TICK_PER_MS), 0);//GPS_OPEN_TIME*1000/OSEL_TICK_PER_MS
+    //MasterReadExEpc();
+    
+    osel_etimer_disarm(&nfc_reader_rx_data_timer);//GPS_OPEN_TIME*1000/OSEL_TICK_PER_MS
+
+    osel_etimer_arm(&nfc_reader_rx_data_timer, (91 / OSEL_TICK_PER_MS), 0);//GPS_OPEN_TIME*1000/OSEL_TICK_PER_MS
 }
 
 void NfcReaderRxProcesstimerStop(void)
 {
-    MasterStopReadEpc();
-    MasterStopReadEpc();
-    BspCom1RxFIFOClear();
     osel_etimer_disarm(&nfc_reader_rx_data_timer);//GPS_OPEN_TIME*1000/OSEL_TICK_PER_MS
 }
 
+void NfcReaderTagProcesstimerStart(uint16_t delay)
+{
+    BspCom1RxFIFOClear();
+    
+    MasterSetPower();
+
+    delay_ms(10);
+    
+    //MasterReadEpc();
+    MasterReadExEpc();
+    
+    osel_etimer_disarm(&nfc_reader_tag_process_timer);//GPS_OPEN_TIME*1000/OSEL_TICK_PER_MS
+
+    osel_etimer_arm(&nfc_reader_tag_process_timer, (delay * 100/OSEL_TICK_PER_MS), 0);//GPS_OPEN_TIME*1000/OSEL_TICK_PER_MS
+
+}
+
+void NfcReaderTagProcesstimerStop(void)
+{
+    MasterStopReadEpc();
+
+    MasterStopReadEpc();
+    
+    osel_etimer_disarm(&nfc_reader_tag_process_timer);//GPS_OPEN_TIME*1000/OSEL_TICK_PER_MS
+}
 
 void BoxSendRfidTagInfo(void)
 {

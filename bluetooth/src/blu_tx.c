@@ -270,7 +270,7 @@ static void blu_send_cmd(uint8_t *cmd, uint8_t len)
     uint8_t i;
     uint8_t mod;
 
-    mod = 15;
+    mod = 12;
     
     for (i = 0; i < (len / mod); i++)
     {
@@ -709,6 +709,7 @@ static void blu_cmd_data_recv_handler(void)
     
 	if (blu_recv_array[0] == '2')
 	{
+      //wangjian
         goto TEST_TAG_READER;
     }
     
@@ -919,8 +920,10 @@ TEST_TAG_READER:
         BluDataSn = 0xabcd;        
 	    scan_delay = blu_recv_array[1];
         
-        NfcReaderRxProcesstimerStop();
-        NfcReaderRxProcesstimerStart(scan_delay);
+        NfcReaderTagProcesstimerStart(scan_delay);
+        
+        NfcReaderRxProcesstimerStart();
+        
         blu_flush_recv_buf_from_serial();
 
         return;

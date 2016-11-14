@@ -30,7 +30,7 @@
 #define	__COM1_CONFIG_PARITY__                      DEV_UART_PARITY_NONE
 #define	__COM1_CONFIG_FLOW_CTL__                    UART_HWCONTROL_NONE
 #define	__COM1_TX_FIFO_SIZE__                       128
-#define	__COM1_RX_FIFO_SIZE__                       512
+#define	__COM1_RX_FIFO_SIZE__                       2048
 #define	__COM1_RX_PIN_AF__                          DEV_UART_PIN_AF0
 #define	__COM1_TX_PIN_AF__                          DEV_UART_PIN_AF0
 

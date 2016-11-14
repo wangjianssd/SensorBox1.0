@@ -51,6 +51,7 @@ void lock_no_password_event_handle(void);
 osel_etimer_t buzzer_cycle_timer;
 osel_etimer_t gprs_test_stop_timer;
 osel_etimer_t nfc_reader_rx_data_timer; 
+osel_etimer_t nfc_reader_tag_process_timer;
 
 extern void blu_no_data_timer_cb(void);
 
@@ -180,13 +181,25 @@ PROCESS_THREAD(app_task_thread_process,ev,data)
        {
            lock_no_password_event_handle();
        }
-        else if (BOX_NFC_READER_EVENT == ev)
+        else if (NFC_READER_RX_PROCESS_EVENT == ev)
         {
-            MasterStopReadEpc();
-
-            MasterStopReadEpc();
-
             NfcReaderRxProcess();
+
+            NfcReaderRxProcesstimerStart();
+
+           // NfcReaderRxProcesstimerStart();
+        }
+        else if (NFC_READER_TAG_PROCESS_EVENT == ev)
+        {
+            MasterStopReadEpc(); //Í£Ö¹Á¬Ðø²É¼¯
+
+            MasterStopReadEpc();
+            
+            NfcReaderRxProcesstimerStop(); //Í£Ö¹Êý¾Ý½âÎö¶¨Ê±Æ÷
+            
+            NfcReaderRxProcess();// ´¦ÀíÊ£ÓàÊý¾Ý
+
+            NfcReaderTagInfoUpdate();//ÉÏ´«Êý¾Ý
         }
        PROCESS_YIELD();     //*< é‡Šæ”¾çº¿ç¨‹æŽ§åˆ¶æƒï¼Œè¿›è¡Œä»»åŠ¡åˆ‡æ¢ 
     }
@@ -236,7 +249,8 @@ void app_task_init(void)
     osel_etimer_ctor(&led_timer,&app_task_thread_process,BOX_LED_TIMER_EVENT,NULL);//*<LEDå®šæ—¶å™¨
     osel_etimer_ctor(&wait_ack_timer,&app_task_thread_process,BOX_WAIT_ACK_TIMER_EVENT,NULL);//*<ä¸‹è¡ŒæŽ¥æ”¶ç­‰å¾…å®šæ—¶å™¨
     osel_etimer_ctor(&nfc_wait_isr_timer,&app_task_thread_process,BOX_NFC_INT_EVENT,NULL);//*<NFCä¸­æ–­å»¶æ—¶å®šæ—¶å™¨    
-    osel_etimer_ctor(&nfc_reader_rx_data_timer,&app_task_thread_process, BOX_NFC_READER_EVENT, NULL);
+    osel_etimer_ctor(&nfc_reader_rx_data_timer,&app_task_thread_process, NFC_READER_RX_PROCESS_EVENT, NULL);
+    osel_etimer_ctor(&nfc_reader_tag_process_timer,&app_task_thread_process, NFC_READER_TAG_PROCESS_EVENT, NULL);
     box_nfc_init();
 #ifdef USE_Fingerprints
     osel_etimer_ctor(&fingerprints_isr_timer,&app_task_thread_process,BOX_FRIGNER_INT_EVENT,NULL);//*<Ö¸ÎÆ¿ªËøÖÐ¶Ï¶¨Ê±Æ÷

@@ -78,6 +78,8 @@ typedef struct
 void NfcReaderInit(void);
 void NfcReaderRxProcess(void);
 void MasterReadExEpc(void);
+void MasterSetPower(void);
+void ReaderInfoGet(void);
 void MasterReadEpc(void);
 void MasterStopReadEpc(void);
 void BoxSendRfidTagInfo(void);

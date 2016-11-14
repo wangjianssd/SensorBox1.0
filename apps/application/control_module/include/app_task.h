@@ -28,7 +28,8 @@ typedef enum
     LOCK_NO_PASSWORD_EVENT,
     EXTERN_LOCK_LOCK_EVENT,
     EXTERN_LOCK_FROZEN_EVENT,
-    BOX_NFC_READER_EVENT,
+    NFC_READER_RX_PROCESS_EVENT,
+    NFC_READER_TAG_PROCESS_EVENT,
 } app_task_sig_enum_t;
 
 PROCESS_NAME(app_task_thread_process);

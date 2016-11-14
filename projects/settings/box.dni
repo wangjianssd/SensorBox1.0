@@ -1,5 +1,5 @@
 [DebugChecksum]
-Checksum=1953547814
+Checksum=714727530
 [Stack]
 FillEnabled=0
 OverflowWarningsEnabled=1
@@ -31,20 +31,28 @@ Fmt4=tag_info_t-tag_count	4	0
 [array_types]
 Fmt0=uint16_t [2]	4	0
 Fmt1=uint8_t [100]	4	0
-Fmt2=uint8_t [122]	4	0
-Fmt3=uint8_t [12]	4	0
-Fmt4=uint8_t [242]	4	0
-Fmt5=uint8_t [272]	4	0
-Fmt6=uint8_t [50]	4	0
-Fmt7=uint8_t [64]	4	0
+Fmt2=uint8_t [1032]	4	0
+Fmt3=uint8_t [122]	4	0
+Fmt4=uint8_t [12]	4	0
+Fmt5=uint8_t [2056]	4	0
+Fmt6=uint8_t [242]	4	0
+Fmt7=uint8_t [272]	4	0
+Fmt8=uint8_t [50]	4	0
+Fmt9=uint8_t [520]	4	0
+Fmt10=uint8_t [64]	4	0
 [DataSample]
 LogEnabled=0
 GraphEnabled=0
 ShowTimeLog=1
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
 [Breakpoints]
-Bp0=_ "STD_CODE" "{$PROJ_DIR$\..\apps\application\control_module\src\app_task.c}.112.12" 1 0 0 0 "" 0 ""
-Bp1=_ "STD_CODE" "{$PROJ_DIR$\..\apps\application\control_module\src\app_send.c}.904.9" 1 0 0 0 "" 0 ""
-Count=2
+Count=0
 [FET]
 Clock mode=46
 Extended Clock mode=1055
@@ -65,13 +73,6 @@ SP=0
 SR=0
 all registers=0
 File name=
-[Log file]
-LoggingEnabled=_ 0
-LogFile=_ ""
-Category=_ 0
-[TermIOLog]
-LoggingEnabled=_ 0
-LogFile=_ ""
 [Aliases]
 Count=0
 SuppressDialog=0
