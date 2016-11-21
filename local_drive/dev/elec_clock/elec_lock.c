@@ -39,6 +39,10 @@ void elec_lock_init(void)
 
 #ifdef USE_EXTERN_LOCK
     elec_lock_CtrlIO_Init_EX();
+    
+    elec_lock_StateIO_Init_EX();
+    
+    elec_lock_StateIO_Int_Dis_EX();
 #endif
 
     elec_lock_StateIO_Init();
@@ -156,6 +160,8 @@ void elec_lock_close(void)
     elec_lock_CtrlIO_Off_EX();
     elec_lock_State = lock_Close;
     
+    elec_lock_StateIO_Int_Dis_EX();
+      
     extern_lock_frozen_timeout_set(EXTERN_LOCK_FROZEN_DELAY);
 #else
 
@@ -260,6 +266,36 @@ __interrupt void port3_int_handle(void)
     }
 
 //    OSEL_EXIT_CRITICAL(status);
+}
+#elif defined(USE_EXTERN_LOCK)
+#pragma vector = PORT3_VECTOR
+__interrupt void port3_int_handle(void)
+{  
+   uint8_t temp;
+   
+    if((elec_lock_StateIO_Int_Get_EX() != 0)&&(elec_lock_StateIO_Int_En_Get_EX() != 0) )
+    {
+    	elec_lock_StateIO_Int_Dis_EX();
+        elec_lock_StateIO_Int_Clear_EX();
+        temp = elec_lock_StateIO_In_EX();
+        if(elec_lock_StateIO_In_EX() != 0)
+        {
+            delay_ms(2);
+            if(elec_lock_StateIO_In_EX() != 0)
+            {
+                elec_lock_StateIO_Set_PullUp_EX();
+                extern_lock_timeout_set(10);
+            }
+            else
+            {
+                elec_lock_StateIO_Int_En_EX();
+            }
+        }
+        else
+        {
+            elec_lock_StateIO_Int_En_EX();
+        }		
+    }
 }
 #endif
 

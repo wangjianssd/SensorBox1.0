@@ -477,7 +477,7 @@ void NfcReaderTagProcesstimerStart(uint16_t delay)
     
     osel_etimer_disarm(&nfc_reader_tag_process_timer);//GPS_OPEN_TIME*1000/OSEL_TICK_PER_MS
 
-    osel_etimer_arm(&nfc_reader_tag_process_timer, (delay * 100/OSEL_TICK_PER_MS), 0);//GPS_OPEN_TIME*1000/OSEL_TICK_PER_MS
+    osel_etimer_arm(&nfc_reader_tag_process_timer, (delay /OSEL_TICK_PER_MS), 0);//GPS_OPEN_TIME*1000/OSEL_TICK_PER_MS
 
 }
 

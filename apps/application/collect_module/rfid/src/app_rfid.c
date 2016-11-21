@@ -170,7 +170,7 @@ void box_nfc_int_handle(void *arg)
                 
                 elec_lock_open();
 
-                extern_lock_timeout_set(EXTERN_LOCK_AUTO_LOCK_DELAY); // 10s timeout lock #endif
+                //extern_lock_timeout_set(EXTERN_LOCK_AUTO_LOCK_DELAY); // 10s timeout lock #endif
                 #else
                 nfc_no_lock_timeout_set(10000); //10s timeout            
                 #endif

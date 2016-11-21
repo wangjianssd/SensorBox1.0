@@ -183,7 +183,7 @@ typedef struct
 		alarm_info_t        alarm_info;//报警
 		location_info_t     location_info;//位置
 		heart_info_t        heart_info;//心跳        
-		tag_info_t          tag_info;
+//		tag_info_t          tag_info;
     }box_type_frame_u;    
 }box_frame_t;
 

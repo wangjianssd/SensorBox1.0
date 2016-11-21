@@ -772,7 +772,6 @@ PROCESS_THREAD(gps_task_thread_process,ev,data)
         if (GPS_UART_EVENT == ev)
         {
             gps_uart_handle();
-            
         }
         else if (GPS_OPEN_EVENT == ev)
         {
@@ -818,8 +817,4 @@ void gps_init(gps_cb_t gps_cb)
 	osel_etimer_ctor(&gps_open_timer,&gps_task_thread_process,GPS_OPEN_EVENT,NULL);
     osel_etimer_ctor(&gps_wait_for_open_timer,&gps_task_thread_process,GPS_WAIT_FOR_OPEN_EVENT,NULL);
     osel_etimer_ctor(&gps_protect_timer,&gps_task_thread_process,GPS_PROTECT_EVENT,NULL);
-
-    
-
-    
 }

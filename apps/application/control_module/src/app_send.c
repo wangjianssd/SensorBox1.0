@@ -980,12 +980,12 @@ void box_blu_send(void)
 				buf[11] = (uint8_t)blu_alarm_cn;
 				
 		        break;
-		     case BOX_TAG_INFO_FRAME:
-                buf[0] = BOX_BLU_CMD_TAGINFO + BOX_BLU_CMD_REPLY_HEAD;
-                buf[9] = frame->box_type_frame_u.tag_info.tag_count;
-                coap_request_len = 8 + 1 + 12 * buf[9];   
-                memcpy((void*)&buf[10],(void*)&frame->box_type_frame_u.tag_info.data, 12 * buf[9]);
-                break;
+//		     case BOX_TAG_INFO_FRAME:
+//                buf[0] = BOX_BLU_CMD_TAGINFO + BOX_BLU_CMD_REPLY_HEAD;
+//                buf[9] = frame->box_type_frame_u.tag_info.tag_count;
+//                coap_request_len = 8 + 1 + 12 * buf[9];   
+//                memcpy((void*)&buf[10],(void*)&frame->box_type_frame_u.tag_info.data, 12 * buf[9]);
+//                break;
 		    default :
 				blu_is_sending = FALSE;
 		        return;

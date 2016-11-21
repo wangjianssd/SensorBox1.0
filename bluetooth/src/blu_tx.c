@@ -270,12 +270,13 @@ static void blu_send_cmd(uint8_t *cmd, uint8_t len)
     uint8_t i;
     uint8_t mod;
 
+   // mod = 0x13;
     mod = 12;
     
     for (i = 0; i < (len / mod); i++)
     {
         serial_write(BLU_UART, &cmd[mod * i], mod);
-        delay_ms(50);
+        delay_ms(30);
     }
 
     serial_write(BLU_UART, &cmd[mod * i], len % mod);
@@ -705,13 +706,13 @@ static void blu_cmd_data_recv_handler(void)
 	uint16_t temp_blu_data_sn;
 	USHORT temp_blu_crc = 0;
 	box_frame_t box_frame;
-    uint8_t scan_delay;
+    uint16_t scan_delay;
     
-	if (blu_recv_array[0] == '2')
-	{
+	//if (blu_recv_array[0] == '2')
+	//{
       //wangjian
-        goto TEST_TAG_READER;
-    }
+      //  goto TEST_TAG_READER;
+    //}
     
 	if((blu_recv_array[0] != BOX_BLU_CMD_COM_HEAD1)||(blu_recv_array[1] != BOX_BLU_CMD_COM_HEAD2))
 	{
@@ -758,8 +759,7 @@ static void blu_cmd_data_recv_handler(void)
 			temp_blu_data[2] = 1;
 		else
 		{
-    TEST_EXTERN_LOCK:
-          
+//    TEST_EXTERN_LOCK:
             if_get_password = TRUE;//授权开锁标志位
 			((uint8_t*)&box_sensor.user_id)[3] = blu_recv_array[8+8];
 			((uint8_t*)&box_sensor.user_id)[2] = blu_recv_array[8+8+1];
@@ -786,12 +786,13 @@ static void blu_cmd_data_recv_handler(void)
 #ifdef USE_EXTERN_LOCK   
             if (elec_lock_State == lock_Open)
             {
+              blu_flush_recv_buf_from_serial();
               return;
             }
             
             elec_lock_open();
             elec_lock_State_updata = 1;
-            extern_lock_timeout_set(EXTERN_LOCK_AUTO_LOCK_DELAY); // 10s timeout lock #endif
+            //extern_lock_timeout_set(EXTERN_LOCK_AUTO_LOCK_DELAY); // 10s timeout lock #endif
 #else
 
             blu_no_lock_timeout_set(10000); //10s timeout			
@@ -914,12 +915,11 @@ static void blu_cmd_data_recv_handler(void)
     else if((blu_recv_array[5] == (BOX_BLU_CMD_TAGINFO)))
 	{
 		//0x88--RFID TAG READER
-TEST_TAG_READER:
-		//BluDataSn = (((uint16_t)blu_recv_array[6])<<8) | blu_recv_array[7];
-        //scan_delay = (((uint16_t)blu_recv_array[8])<<8) | blu_recv_array[9];
-        BluDataSn = 0xabcd;        
-	    scan_delay = blu_recv_array[1];
+//TEST_TAG_READER:
+		BluDataSn = (((uint16_t)blu_recv_array[6])<<8) | blu_recv_array[7];
         
+        scan_delay = (((uint16_t)blu_recv_array[24])<<8) | blu_recv_array[25];
+
         NfcReaderTagProcesstimerStart(scan_delay);
         
         NfcReaderRxProcesstimerStart();

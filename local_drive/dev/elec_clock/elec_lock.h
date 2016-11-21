@@ -36,6 +36,16 @@
 #define elec_lock_CtrlIO_On_EX()   {P6OUT &= ~BIT3; P4OUT |= BIT1;}
 #define elec_lock_CtrlIO_Off_EX()  {P4OUT &= ~BIT1; P6OUT |= BIT3;}
 #define elec_lock_CtrlIO_Float_EX(){P4OUT &= ~BIT1; P6OUT &= ~BIT3;}
+
+#define elec_lock_StateIO_Set_PullUp_EX()   {P3DIR &= ~BIT3; P3REN |= BIT3; P3OUT  |= BIT3;}
+#define elec_lock_StateIO_Set_PullDown_EX() {P3DIR &= ~BIT3; P3REN |= BIT3; P3OUT &= ~BIT3;}
+#define elec_lock_StateIO_Init_EX()         {P3SEL &= ~BIT3; P3DIR &= ~BIT3; P3REN |= BIT3; P3OUT |= BIT3;}//P1OUT |= BIT0;P1IES |= BIT0; P1IFG &= ~BIT0; P1IE |= BIT0;}
+#define elec_lock_StateIO_In_EX()           (P3IN  & BIT3)
+#define elec_lock_StateIO_Int_Clear_EX()    {P3IFG &= ~BIT3;}  
+#define elec_lock_StateIO_Int_Get_EX()      (P3IFG & BIT3)
+#define elec_lock_StateIO_Int_En_Get_EX()   (P3IE & BIT3)
+#define elec_lock_StateIO_Int_En_EX()       {elec_lock_StateIO_Set_PullDown_EX(); P3IFG &= ~BIT3; P3IES &= ~BIT3; P3IE |= BIT3;}
+#define elec_lock_StateIO_Int_Dis_EX()      {P3IE &= ~BIT3;  P3IFG &= ~BIT3;}
 #endif
 
 #define elec_lock_CtrlIO_Init()	   {P9SEL &= ~BIT0; P9DIR |= BIT0; P9OUT &= ~BIT0;}

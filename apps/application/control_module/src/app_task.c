@@ -170,6 +170,15 @@ PROCESS_THREAD(app_task_thread_process,ev,data)
       {
           extern_lock_frozen_handle(data);
           extern_lock_status_send();
+          
+          if (elec_lock_State == lock_Open)
+          {
+             elec_lock_StateIO_Int_En_EX();
+          }
+          else if(elec_lock_State == lock_Close)
+          {
+            elec_lock_StateIO_Int_Dis_EX();
+          }
       }
 #endif  
 
