@@ -1,5 +1,5 @@
 [DebugChecksum]
-Checksum=-1239531870
+Checksum=997131603
 [Stack]
 FillEnabled=0
 OverflowWarningsEnabled=1
@@ -27,7 +27,6 @@ Fmt0=RFID_DATA-RSSIBuf	4	0
 Fmt1=RfidTagInfo-ep_len	3	0
 Fmt2=RfidTagInfo-pc	4	0
 Fmt3=RfidTagInfo-rssi	4	0
-Fmt4=tag_info_t-tag_count	4	0
 [array_types]
 Fmt0=uint16_t [2]	4	0
 Fmt1=uint8_t [100]	4	0
@@ -48,7 +47,9 @@ ShowTimeLog=1
 [Breakpoints]
 Bp0=_ "STD_CODE" "{$PROJ_DIR$\..\bluetooth\src\blu_tx.c}.844.3" 0 0 0 0 "" 0 ""
 Bp1=_ "STD_CODE" "{$PROJ_DIR$\..\nfc_reader\nfc_reader.c}.515.5" 0 0 0 0 "" 0 ""
-Count=2
+Bp2=_ "STD_CODE" "{$PROJ_DIR$\..\gznet\code\src\platform\core430\driver\uart.c}.276.5" 1 0 0 0 "" 0 ""
+Bp3=_ "STD_CODE" "{$PROJ_DIR$\..\apps\application\control_module\src\app_task.c}.283.5" 1 0 0 0 "" 0 ""
+Count=4
 [FET]
 Clock mode=46
 Extended Clock mode=1055

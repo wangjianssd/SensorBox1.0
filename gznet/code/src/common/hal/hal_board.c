@@ -322,8 +322,10 @@ void hal_board_init(void)
 #if 1
     hal_acc_init();
 #endif
-    //wangjian
+
+#if USE_RFID_READER > 0
     NfcReaderInit();
+#endif
 
     debug_init(DBG_LEVEL_TRACE | DBG_LEVEL_ORIGIN | DBG_LEVEL_INFO);
 }

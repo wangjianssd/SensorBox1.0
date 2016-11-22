@@ -259,15 +259,26 @@ __interrupt void uart1_rx_isr(void)
 extern void BspCom1RxHander( uint8_t* data, uint16_t size );
 
 #pragma vector = USCI_A2_VECTOR
+#if USE_RFID_READER > 0
 __interrupt void uart2_rx_isr(void)
 {
-    //osel_event_t event;
     uint8_t data;
     OSEL_ISR_ENTRY();
-    //uart_int_cb_handle(UART_2, UCA2RXBUF);
     data = UCA2RXBUF;
     FIFOIn((FIFODataTypeDef *)COM1RxFIFO, &data);
 
     OSEL_ISR_EXIT();
     LPM3_EXIT;
 }
+#else
+__interrupt void uart2_rx_isr(void)
+{
+    OSEL_ISR_ENTRY();
+    uart_int_cb_handle(UART_2, UCA2RXBUF);
+    OSEL_ISR_EXIT();
+    LPM3_EXIT;
+}
+
+#endif
+
+

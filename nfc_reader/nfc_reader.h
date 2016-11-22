@@ -22,6 +22,7 @@
 #include <gznet.h>
 
 /* Define --------------------------------------------------------------------*/
+#define USE_RFID_READER          0
 #define MasterFrameHeader1       0xAA //֡ͷ1
 #define MasterFrameTail1         0x8E //֡β1
 #define NFC_READER_RX_DATA_TIME  2
