@@ -26,7 +26,7 @@ extern bool_t gprs_if_can_send;
 extern bool_t gprs_if_connected;
 static uint8_t gprs_cmd_recv_array[GPRS_RECV_CMD_SIZE_MAX]; //GPRS 接收缓冲区数组
 
-#define GPRS_CMD_CGATT_MAX_NUM     15u //附着最大次数定义
+#define GPRS_CMD_CGATT_MAX_NUM     30u //附着最大次数定义
 #define GPRS_CMD_CIPSTART_MAX_NUM     3u //建立连接最大次数定义
 #define GPRS_CMD_SEND_LEN_MAX_NUM     5u //发送数据长度最大次数
 uint8_t gprs_cmd_send_cgatt_count = 0;//附着连接次数

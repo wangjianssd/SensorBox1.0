@@ -270,8 +270,8 @@ static void blu_send_cmd(uint8_t *cmd, uint8_t len)
     uint8_t i;
     uint8_t mod;
 
-   // mod = 0x13;
-    mod = 12;
+    mod = 0x13;
+    //mod = 12;
     
     for (i = 0; i < (len / mod); i++)
     {
@@ -873,8 +873,9 @@ static void blu_cmd_data_recv_handler(void)
 					((uint8_t*)&box_location.latitude)[1] = blu_recv_array[8+8+4+4+4+2];
 					((uint8_t*)&box_location.latitude)[0] = blu_recv_array[8+8+4+4+4+3];
 
-
+#ifndef USE_EXTERN_LOCK   
 					elec_lock_init();
+#endif
 					humiture_stop_timer();
 					box_disable_acc_alg();
 					
