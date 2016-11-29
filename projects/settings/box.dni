@@ -1,5 +1,5 @@
 [DebugChecksum]
-Checksum=2064994969
+Checksum=-2143854524
 [Stack]
 FillEnabled=0
 OverflowWarningsEnabled=1
@@ -46,11 +46,10 @@ GraphEnabled=0
 ShowTimeLog=1
 [Breakpoints]
 Bp0=_ "STD_CODE" "{$PROJ_DIR$\..\bluetooth\src\blu_tx.c}.844.3" 0 0 0 0 "" 0 ""
-Bp1=_ "STD_CODE" "{$PROJ_DIR$\..\nfc_reader\nfc_reader.c}.515.5" 0 0 0 0 "" 0 ""
-Bp2=_ "STD_CODE" "{$PROJ_DIR$\..\bluetooth\src}.246.9" 0 0 0 0 "" 0 ""
-Bp3=_ "STD_CODE" "{$PROJ_DIR$\..\bluetooth\src}.530.13" 0 0 0 0 "" 0 ""
-Bp4=_ "STD_CODE" "{$PROJ_DIR$\..\bluetooth\src\blu_tx.c}.745.2" 0 0 0 0 "" 0 ""
-Count=5
+Bp1=_ "STD_CODE" "{$PROJ_DIR$\..\bluetooth\src}.246.9" 0 0 0 0 "" 0 ""
+Bp2=_ "STD_CODE" "{$PROJ_DIR$\..\bluetooth\src}.530.13" 0 0 0 0 "" 0 ""
+Bp3=_ "STD_CODE" "{$PROJ_DIR$\..\bluetooth\src\blu_tx.c}.784.12" 1 0 0 0 "" 0 ""
+Count=4
 [FET]
 Clock mode=46
 Extended Clock mode=1055

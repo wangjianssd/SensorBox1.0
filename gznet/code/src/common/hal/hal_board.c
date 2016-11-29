@@ -17,6 +17,7 @@
 #include <hal_elec_lock.h>
 #include <hal_acc_sensor.h>
 #include <hal_bh1750.h>
+#include "nfc_reader.h"
 
 device_info_t device_info;
 static bool_t delay_save_flag = FALSE;

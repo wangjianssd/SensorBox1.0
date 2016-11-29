@@ -21,6 +21,7 @@
 #include "fifo.h"
 #include "bsp_com.h"
 #include "blu_tx.h"
+#include "nfc_reader.h"
 
 extern uint8_t COM1RxFIFO[__COM1_RX_FIFO_SIZE__ + FIFO_INFO_SIZE];
 
