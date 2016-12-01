@@ -46,6 +46,7 @@
 #define  BLU_AT_PIN                 "AT+PIN\r"
 #define  BLU_AT_BAUD                "AT+BAUD\r"
 #define  BLU_AT_BAUD_115200         "AT+BAUD8\r\n"
+#define  BLU_AT_BAUD_9600           "AT+BAUD4\r\n"
 
 #define  BLU_AT_STOP                "AT+STOP\r"
 #define  BLU_AT_PARI                "AT+PARI\r"
@@ -1138,14 +1139,21 @@ void blu_init(const blu_init_cfg_t *blu_cfg)
 
     blu_flush_recv_buf_from_app();  // 清空接收缓冲  
     wsnos_init_printf(NULL, NULL);//仅使用wsnos_sprintf
-    
+#if 0
     hal_uart_init(BLU_UART, 9600); 
 //wangjian blu
 	serial_write(BLU_UART, BLU_AT_BAUD_115200, sizeof(BLU_AT_BAUD_115200)-1);
 
 	delay_ms(200);
-	hal_uart_init(BLU_UART, 115200); 
-
+	//hal_uart_init(BLU_UART, 115200); 
+#else
+        hal_uart_init(BLU_UART, 115200); 
+	serial_write(BLU_UART, BLU_AT_BAUD_9600, sizeof(BLU_AT_BAUD_9600)-1);
+        
+        hal_uart_init(BLU_UART, 9600); 
+	//serial_write(BLU_UART, BLU_AT_BAUD_115200, sizeof(BLU_AT_BAUD_115200)-1);
+	delay_ms(200);
+#endif        
     //blu_if_connected = TRUE;
     blu_if_connected = FALSE;
 

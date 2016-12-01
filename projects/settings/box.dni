@@ -1,5 +1,5 @@
 [DebugChecksum]
-Checksum=-2143854524
+Checksum=901105579
 [Stack]
 FillEnabled=0
 OverflowWarningsEnabled=1
@@ -32,7 +32,7 @@ Fmt0=uint16_t [2]	4	0
 Fmt1=uint8_t [100]	4	0
 Fmt2=uint8_t [1032]	4	0
 Fmt3=uint8_t [122]	4	0
-Fmt4=uint8_t [128]	5	0
+Fmt4=uint8_t [128]	4	0
 Fmt5=uint8_t [12]	4	0
 Fmt6=uint8_t [2056]	4	0
 Fmt7=uint8_t [242]	4	0
@@ -44,12 +44,20 @@ Fmt11=uint8_t [64]	4	0
 LogEnabled=0
 GraphEnabled=0
 ShowTimeLog=1
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
 [Breakpoints]
-Bp0=_ "STD_CODE" "{$PROJ_DIR$\..\bluetooth\src\blu_tx.c}.844.3" 0 0 0 0 "" 0 ""
+Bp0=_ "STD_CODE" "{$PROJ_DIR$\..\bluetooth\src\blu_tx.c}.845.3" 0 0 0 0 "" 0 ""
 Bp1=_ "STD_CODE" "{$PROJ_DIR$\..\bluetooth\src}.246.9" 0 0 0 0 "" 0 ""
 Bp2=_ "STD_CODE" "{$PROJ_DIR$\..\bluetooth\src}.530.13" 0 0 0 0 "" 0 ""
-Bp3=_ "STD_CODE" "{$PROJ_DIR$\..\bluetooth\src\blu_tx.c}.784.12" 1 0 0 0 "" 0 ""
-Count=4
+Bp3=_ "STD_CODE" "{$PROJ_DIR$\..\bluetooth\src\blu_tx.c}.743.3" 1 0 0 0 "" 0 ""
+Bp4=_ "STD_CODE" "{$PROJ_DIR$\..\bluetooth\src\blu_tx.c}.721.9" 1 0 0 0 "" 0 ""
+Count=5
 [FET]
 Clock mode=46
 Extended Clock mode=1055
@@ -70,13 +78,6 @@ SP=0
 SR=0
 all registers=0
 File name=
-[Log file]
-LoggingEnabled=_ 0
-LogFile=_ ""
-Category=_ 0
-[TermIOLog]
-LoggingEnabled=_ 0
-LogFile=_ ""
 [Aliases]
 Count=0
 SuppressDialog=0

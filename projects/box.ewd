@@ -223,7 +223,7 @@
         </option>
         <option>
           <name>UsbComPort</name>
-          <state>Automatic</state>
+          <state>COM3</state>
         </option>
         <option>
           <name>FetConnection</name>
