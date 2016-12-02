@@ -1,5 +1,5 @@
 [DebugChecksum]
-Checksum=901105579
+Checksum=847735575
 [Stack]
 FillEnabled=0
 OverflowWarningsEnabled=1
@@ -44,13 +44,6 @@ Fmt11=uint8_t [64]	4	0
 LogEnabled=0
 GraphEnabled=0
 ShowTimeLog=1
-[Log file]
-LoggingEnabled=_ 0
-LogFile=_ ""
-Category=_ 0
-[TermIOLog]
-LoggingEnabled=_ 0
-LogFile=_ ""
 [Breakpoints]
 Bp0=_ "STD_CODE" "{$PROJ_DIR$\..\bluetooth\src\blu_tx.c}.845.3" 0 0 0 0 "" 0 ""
 Bp1=_ "STD_CODE" "{$PROJ_DIR$\..\bluetooth\src}.246.9" 0 0 0 0 "" 0 ""
@@ -78,6 +71,13 @@ SP=0
 SR=0
 all registers=0
 File name=
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
 [Aliases]
 Count=0
 SuppressDialog=0

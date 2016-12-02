@@ -46,11 +46,19 @@ void NfcReaderInit(void)
     hal_uart_init(__BSP_COM1__, 115200); 
     
     BspCom1Init(115200);
+    
+    delay_ms(4000);
 
     RxBuffer_RFID_DATA.queue.count = 0;
 
     MasterStopReadEpc();
+
+    delay_ms(250);
+    
     MasterStopReadEpc();
+    
+    delay_ms(250);
+
 
     for(i = 0; i < 5; i++)
     {
@@ -467,12 +475,25 @@ void NfcReaderRxProcesstimerStop(void)
 void NfcReaderTagProcesstimerStart(uint16_t delay)
 {
     BspCom1RxFIFOClear();
-    
-    MasterSetPower();
+    //MasterStopReadEpc();
+    delay_ms(20);
 
-    delay_ms(10);
+    MasterStopReadEpc();
+    delay_ms(50);
+
+    MasterSetPower();
+    delay_ms(50);
+
+    MasterStopReadEpc();
+
+    delay_ms(50);
     
     //MasterReadEpc();
+    MasterReadExEpc();
+    
+      //  MasterStopReadEpc();
+    delay_ms(100);
+
     MasterReadExEpc();
     
     osel_etimer_disarm(&nfc_reader_tag_process_timer);//GPS_OPEN_TIME*1000/OSEL_TICK_PER_MS
